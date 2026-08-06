@@ -1,391 +1,484 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="" />
-        <meta
-            name="author"
-            content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
-        <meta name="generator" content="Hugo 0.98.0" />
-        <title>Dashboard Template · Bootstrap v5.2</title>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Oficial - República Federal de Centroamérica</title>
+  
+  <!-- Favicon / Icono de la pestaña del navegador -->
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png">
 
-        <link
-            rel="canonical"
-            href="https://getbootstrap.com/docs/5.2/examples/dashboard/" />
+  <!-- Tipografía Montserrat Heavy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 
-        <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                user-select: none;
-            }
+    body {
+      background-color: #080808;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
 
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
+    /* Encabezado Principal */
+    header {
+      text-align: center;
+      max-width: 800px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
 
-            .b-example-divider {
-                height: 3rem;
-                background-color: rgba(0, 0, 0, 0.1);
-                border: solid rgba(0, 0, 0, 0.15);
-                border-width: 1px 0;
-                box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-                    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
-            }
+    .emblem-main {
+      width: 180px;
+      height: auto;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.8));
+    }
 
-            .b-example-vr {
-                flex-shrink: 0;
-                width: 1.5rem;
-                height: 100vh;
-            }
+    .main-title {
+      color: #f3be2a;
+      font-size: 1.6rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
 
-            .bi {
-                vertical-align: -0.125em;
-                fill: currentColor;
-            }
+    /* Menú de Navegación Estilizado */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 1000px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
 
-            .nav-scroller {
-                position: relative;
-                z-index: 2;
-                height: 2.75rem;
-                overflow-y: hidden;
-            }
+    .nav-btn {
+      background-color: #121212;
+      color: #ffffff;
+      border: 2px solid #2a2a2a;
+      padding: 12px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
-            .nav-scroller .nav {
-                display: flex;
-                flex-wrap: nowrap;
-                padding-bottom: 1rem;
-                margin-top: -1px;
-                overflow-x: auto;
-                text-align: center;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-            }
-        </style>
+    .nav-btn:hover, .nav-btn.active {
+      background-color: #f3be2a;
+      color: #000000;
+      border-color: #f3be2a;
+    }
 
-        <!-- Custom styles for this template -->
-        <link href="dashboard.css" rel="stylesheet" />
-    </head>
-    <body>
-        <header
-            class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#"
-                >Company name</a
-            >
-            <button
-                class="navbar-toggler position-absolute d-md-none collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#sidebarMenu"
-                aria-controls="sidebarMenu"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <input
-                class="form-control form-control-dark w-100 rounded-0 border-0"
-                type="text"
-                placeholder="Search"
-                aria-label="Search" />
-            <div class="navbar-nav">
-                <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="signin.html">Sign In</a>
-                </div>
-            </div>
-        </header>
+    /* Contenedor de Secciones */
+    main {
+      width: 100%;
+      max-width: 850px;
+    }
 
-        <div class="container-fluid">
-            <div class="row">
-                <nav
-                    id="sidebarMenu"
-                    class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                    <div class="position-sticky pt-3">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link active"
-                                    aria-current="page"
-                                    href="#">
-                                    <span
-                                        data-feather="home"
-                                        class="align-text-bottom"></span>
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="file"
-                                        class="align-text-bottom"></span>
-                                    Orders
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="shopping-cart"
-                                        class="align-text-bottom"></span>
-                                    Products
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="users"
-                                        class="align-text-bottom"></span>
-                                    Customers
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="bar-chart-2"
-                                        class="align-text-bottom"></span>
-                                    Reports
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="layers"
-                                        class="align-text-bottom"></span>
-                                    Integrations
-                                </a>
-                            </li>
-                        </ul>
+    .section-card {
+      display: none; /* Se ocultan por defecto */
+      background-color: #0c0c0c;
+      border: 2px solid #1f1f1f;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      margin-bottom: 40px;
+    }
 
-                        <h6
-                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-                            <span>Saved reports</span>
-                            <a
-                                class="link-secondary"
-                                href="#"
-                                aria-label="Add a new report">
-                                <span
-                                    data-feather="plus-circle"
-                                    class="align-text-bottom"></span>
-                            </a>
-                        </h6>
-                        <ul class="nav flex-column mb-2">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="file-text"
-                                        class="align-text-bottom"></span>
-                                    Current month
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="file-text"
-                                        class="align-text-bottom"></span>
-                                    Last quarter
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="file-text"
-                                        class="align-text-bottom"></span>
-                                    Social engagement
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span
-                                        data-feather="file-text"
-                                        class="align-text-bottom"></span>
-                                    Year-end sale
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+    .section-card.active {
+      display: block; /* Solo se muestra la sección activa */
+    }
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    <div
-                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Dashboard</h1>
-                        <div class="btn-toolbar mb-2 mb-md-0">
-                            <div class="btn-group me-2">
-                                <button
-                                    type="button"
-                                    class="btn btn-sm btn-outline-secondary">
-                                    Share
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-sm btn-outline-secondary">
-                                    Export
-                                </button>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                                <span
-                                    data-feather="calendar"
-                                    class="align-text-bottom"></span>
-                                This week
-                            </button>
-                        </div>
-                    </div>
+    .section-header {
+      color: #f3be2a;
+      font-size: 1.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      border-bottom: 2px solid #222222;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
 
-                    <canvas
-                        class="my-4 w-100"
-                        id="myChart"
-                        width="900"
-                        height="380"></canvas>
+    .section-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #dddddd;
+      font-weight: 700;
+    }
 
-                    <h2>Section title</h2>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Header</th>
-                                    <th scope="col">Header</th>
-                                    <th scope="col">Header</th>
-                                    <th scope="col">Header</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1,001</td>
-                                    <td>random</td>
-                                    <td>data</td>
-                                    <td>placeholder</td>
-                                    <td>text</td>
-                                </tr>
-                                <tr>
-                                    <td>1,002</td>
-                                    <td>placeholder</td>
-                                    <td>irrelevant</td>
-                                    <td>visual</td>
-                                    <td>layout</td>
-                                </tr>
-                                <tr>
-                                    <td>1,003</td>
-                                    <td>data</td>
-                                    <td>rich</td>
-                                    <td>dashboard</td>
-                                    <td>tabular</td>
-                                </tr>
-                                <tr>
-                                    <td>1,003</td>
-                                    <td>information</td>
-                                    <td>placeholder</td>
-                                    <td>illustrative</td>
-                                    <td>data</td>
-                                </tr>
-                                <tr>
-                                    <td>1,004</td>
-                                    <td>text</td>
-                                    <td>random</td>
-                                    <td>layout</td>
-                                    <td>dashboard</td>
-                                </tr>
-                                <tr>
-                                    <td>1,005</td>
-                                    <td>dashboard</td>
-                                    <td>irrelevant</td>
-                                    <td>text</td>
-                                    <td>placeholder</td>
-                                </tr>
-                                <tr>
-                                    <td>1,006</td>
-                                    <td>dashboard</td>
-                                    <td>illustrative</td>
-                                    <td>rich</td>
-                                    <td>data</td>
-                                </tr>
-                                <tr>
-                                    <td>1,007</td>
-                                    <td>placeholder</td>
-                                    <td>tabular</td>
-                                    <td>information</td>
-                                    <td>irrelevant</td>
-                                </tr>
-                                <tr>
-                                    <td>1,008</td>
-                                    <td>random</td>
-                                    <td>data</td>
-                                    <td>placeholder</td>
-                                    <td>text</td>
-                                </tr>
-                                <tr>
-                                    <td>1,009</td>
-                                    <td>placeholder</td>
-                                    <td>irrelevant</td>
-                                    <td>visual</td>
-                                    <td>layout</td>
-                                </tr>
-                                <tr>
-                                    <td>1,010</td>
-                                    <td>data</td>
-                                    <td>rich</td>
-                                    <td>dashboard</td>
-                                    <td>tabular</td>
-                                </tr>
-                                <tr>
-                                    <td>1,011</td>
-                                    <td>information</td>
-                                    <td>placeholder</td>
-                                    <td>illustrative</td>
-                                    <td>data</td>
-                                </tr>
-                                <tr>
-                                    <td>1,012</td>
-                                    <td>text</td>
-                                    <td>placeholder</td>
-                                    <td>layout</td>
-                                    <td>dashboard</td>
-                                </tr>
-                                <tr>
-                                    <td>1,013</td>
-                                    <td>dashboard</td>
-                                    <td>irrelevant</td>
-                                    <td>text</td>
-                                    <td>visual</td>
-                                </tr>
-                                <tr>
-                                    <td>1,014</td>
-                                    <td>dashboard</td>
-                                    <td>illustrative</td>
-                                    <td>rich</td>
-                                    <td>data</td>
-                                </tr>
-                                <tr>
-                                    <td>1,015</td>
-                                    <td>random</td>
-                                    <td>tabular</td>
-                                    <td>information</td>
-                                    <td>text</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </main>
-            </div>
+    /* Galería / Rejilla para la selección de países */
+    .grid-countries {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .country-card {
+      background-color: #141414;
+      border: 1px solid #282828;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .country-card:hover {
+      border-color: #f3be2a;
+      transform: translateY(-3px);
+    }
+
+    .country-card h3 {
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    /* Rejilla de Personajes / Otros Juegos */
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .character-card {
+      background-color: #121212;
+      border: 1px solid #222;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .character-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 1px solid #333;
+    }
+
+    .character-name {
+      color: #f3be2a;
+      font-size: 1.05rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .character-role {
+      font-size: 0.8rem;
+      color: #aaaaaa;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .gold-highlight {
+      color: #f3be2a;
+    }
+
+    /* Estilos para lista de contactos */
+    .contact-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contact-list li {
+      background: #121212;
+      border: 1px solid #222;
+      padding: 15px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .contact-list a {
+      color: #f3be2a;
+      text-decoration: none;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .contact-list a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      color: #555555;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado con Logo Oficial -->
+  <header>
+    <img class="emblem-main" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Escudo Oficial Centroamérica">
+    <h1 class="main-title">República Federal de Centroamérica war era</h1>
+  </header>
+
+  <!-- Navegación Principal -->
+  <nav>
+    <button class="nav-btn active" onclick="showSection('inicio', event)">Inicio</button>
+    <button class="nav-btn" onclick="showSection('historias', event)">Historia por País</button>
+    <button class="nav-btn" onclick="showSection('personajes', event)">Personajes Históricos</button>
+    <button class="nav-btn" onclick="showSection('gobierno', event)">Sistema de Gobierno</button>
+    <button class="nav-btn" onclick="showSection('juegos', event)">Otros Juegos</button>
+    <button class="nav-btn" onclick="showSection('contacto', event)">Canales de Contacto</button>
+  </nav>
+
+  <!-- Contenido de las Secciones -->
+  <main>
+
+    <!-- 1. INICIO / BIENVENIDA -->
+    <section id="inicio" class="section-card active">
+      <h2 class="section-header">COMUNICADO DE BIENVENIDA</h2>
+      <div class="section-content">
+        <p>Bienvenido al portal diplomático e histórico de la <span class="gold-highlight">República Federal de Centroamérica</span>.</p>
+        <br>
+        <p>Somos una comunidad enfocada en el Roleplay de la "República Federal de Centroamerica"</p>
+      </div>
+    </section>
+
+    <!-- 2. SECCIÓN DE HISTORIA POR PAÍS -->
+    <section id="historias" class="section-card">
+      <h2 class="section-header">HISTORIA REGIONAL</h2>
+      <p class="section-content">Selecciona una nación para desplegar sus archivos históricos:</p>
+      
+      <div class="grid-countries">
+        <div class="country-card" onclick="openCountry('Guatemala')">
+          <h3>Guatemala</h3>
+        </div>
+        <div class="country-card" onclick="openCountry('Nicaragua')">
+          <h3>Nicaragua</h3>
+        </div>
+        <div class="country-card" onclick="openCountry('Costa Rica')">
+          <h3>Costa Rica</h3>
+        </div>
+        <div class="country-card" onclick="openCountry('El Salvador')">
+          <h3>El Salvador</h3>
+        </div>
+        <div class="country-card" onclick="openCountry('Honduras')">
+          <h3>Honduras</h3>
+        </div>
+      </div>
+
+      <!-- Área donde se muestra el detalle del país seleccionado -->
+      <div id="country-detail" style="margin-top: 30px; display: none; background: #111; padding: 20px; border-left: 3px solid #f3be2a;">
+        <h3 id="country-title" class="gold-highlight" style="font-size: 1.3rem; text-transform: uppercase; margin-bottom: 10px;"></h3>
+        <div id="country-text" class="section-content"></div>
+      </div>
+    </section>
+
+    <!-- 3. PERSONAJES HISTÓRICOS -->
+    <section id="personajes" class="section-card">
+      <h2 class="section-header">PERSONAJES HISTÓRICOS Y LÍDERES</h2>
+      
+      <div class="character-grid">
+        
+        <!-- Ficha 1 -->
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_1.png" alt="General Francisco Morazán">
+          <div class="character-name">gary</div>
+          <div class="character-role">fundador y presidente de la rfca</div>
+          <p class="section-content" style="font-size: 0.85rem;">Antiguo lider de la comunidad en el extinto juego "Rival Regions", fundador de la comunidad Centroamericana (C.A), primer jugador C.A&nbsp;en War Era, primer presidente de Guatemala, primer presidente nativo en C.A.</p>
         </div>
 
-        <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Ficha 2 -->
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <div class="character-name">Duvra</div>
+          <div class="character-role">Fundador de la comunidad nicaraguense.</div>
+          <p class="section-content" style="font-size: 0.85rem;">Jugador Venezolano, se encargo de liderar a los Nicaraguenses y ganar las elecciones contra "Lalo Salamanca", jugador estado unidense que queria tener toda Centroamerica.</p>
+        </div>
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <div class="character-name">Keikai</div>
+          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
+          <p class="section-content" style="font-size: 0.85rem;">Jugador Nicaraguense, lider de los nicaraguenses, logro hacer el primer NAP con Panama y Argentina, logro ser el top donador de dinero en los estados de Guatemala, Nicaragua y la unidad "Fuerza Aerea".</p>
+        </div>
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <div class="character-name">rams</div>
+          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
+          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
+        </div>
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <div class="character-name">Duvra</div>
+          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
+          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
+        </div>
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <div class="character-name">Duvra</div>
+          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
+          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
+        </div>
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <div class="character-name">Duvra</div>
+          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
+          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
+        </div>
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <div class="character-name">Duvra</div>
+          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
+          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
+        </div>
+        <div class="character-card">
+          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <div class="character-name">Duvra</div>
+          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
+          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
+        </div>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-            integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-            crossorigin="anonymous"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
-            integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-            crossorigin="anonymous"></script>
-        <script src="dashboard.js"></script>
-    </body>
+      </div>
+    </section>
+
+    <!-- 4. SISTEMA DE GOBIERNO -->
+    <section id="gobierno" class="section-card">
+      <h2 class="section-header">SISTEMA DE GOBIERNO</h2>
+      <div class="section-content">
+        <p><span class="gold-highlight">ESTRUCTURA DEL PODER FEDERAL:</span></p>
+        <br>
+        <ul style="list-style-type: square; margin-left: 20px; line-height: 1.8;">
+          <li><span class="gold-highlight">Poder Ejecutivo:</span> Presidencia de la República Federal y Consejo de Ministros de la Unión.</li>
+          <li><span class="gold-highlight">Poder Legislativo:</span> Congreso Federal Representativo con delegados de los estados miembros.</li>
+          <li><span class="gold-highlight">Mando Militar:</span> Alto Estado Mayor Conjunto de las Fuerzas Armadas Federales.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. OTROS JUEGOS -->
+    <section id="juegos" class="section-card">
+      <h2 class="section-header">OTROS JUEGOS Y PROYECTOS</h2>
+      <div class="section-content">
+        <p>Explora otras simulaciones, partidas y proyectos activos de la comunidad:</p>
+        
+        <div class="character-grid" style="margin-top: 20px;">
+          <!-- Proyecto o Juego 1 -->
+          <div class="character-card">
+            <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Juego 1">
+            <div class="character-name">rival regions</div>
+            <div class="character-role">Estrategia Global</div>
+            <p class="section-content" style="font-size: 0.85rem;">Simulación geopolítica.<br><br>Comunidad activa desde 2017-2025, dominando todo Centroamerica.</p>
+          </div>
+
+          <!-- Proyecto o Juego 2 -->
+          <div class="character-card">
+            <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Juego 2">
+            <div class="character-name">diplomacy</div>
+            <div class="character-role">Roleplay economico</div>
+            <p class="section-content" style="font-size: 0.85rem;">Simulacion geopolitica, comunidad en formacion.<br><br>2026-x</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CANALES DE CONTACTO -->
+    <section id="contacto" class="section-card">
+      <h2 class="section-header">CANALES DE CONTACTO Y COMUNIDAD</h2>
+      <div class="section-content">
+        <p style="margin-bottom: 20px;">Ponte en contacto con el cuerpo diplomático, administradores o únete a nuestras comunidades:</p>
+
+        <ul class="contact-list">
+          <li>
+            <span>Servidor de Discord Oficial</span>
+            <a href="https://discord.gg/NfW9WPK8f7" target="_blank">Unirse →</a>
+          </li>
+          <li>
+            <span>Grupo de WhatsApp / Comunidad</span>
+            <a href="https://chat.whatsapp.com/ejemplo" target="_blank">Entrar →</a>
+          </li>
+          <li>
+            <span>War Era</span>
+            <a href="mailto:contacto@ejemplo.com">Enviar Correo →</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Registro Oficial de comunidad gamer Centroaméricana</footer>
+
+  <!-- Lógica interactiva en JavaScript -->
+  <script>
+    function showSection(sectionId, evt) {
+      const sections = document.querySelectorAll('.section-card');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.nav-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(sectionId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    /* AQUÍ PUEDES EDITAR EL CONTENIDO DE CADA PAÍS CON TEXTO, IMÁGENES O PDFS */
+    const historyData = {
+      'Guatemala': `
+        <p>Registros del inicio de la Republica Federal Centroamerica, las campañas militares y la diplomacia en la frontera norte...</p>
+        <br>
+        <img src="https://i.postimg.cc/DwvHT9SW/1.png" style="width: 100%; max-width: 400px; display: block; margin: 15px 0; border: 1px solid #333;">
+        <img src="https://i.postimg.cc/g2zQWCxX/2.png" style="width: 100%; max-width: 400px; display: block; margin: 15px 0; border: 1px solid #333;">
+      `,
+
+      'Nicaragua': `
+        <p>Archivos sobre las rutas comerciales, fortificaciones y tratados marítimos.</p>
+        <br>
+        <p><a href="https://drive.google.com/file/d/1Hywwp16JQ9robtK8qGPI3Zz4gWY_2yGe/view?usp=sharing" target="_blank" style="color: #f3be2a; text-decoration: underline;">📄 Ver Documento Oficial en PDF</a></p>
+      `,
+
+      'Costa Rica': `
+        <p>Documentación relativa al proceso de integración y acuerdos fronterizos.</p>
+      `,
+
+      'El Salvador': `
+        <p>Sede del mando central federal y reorganización de las defensas armadas.</p>
+      `,
+
+      'Honduras': `
+        <p>Puntos clave de abastecimiento, anexión y control de pasos territoriales.</p>
+      `
+    };
+
+    function openCountry(countryName) {
+      const detailBox = document.getElementById('country-detail');
+      const title = document.getElementById('country-title');
+      const text = document.getElementById('country-text');
+
+      title.innerText = 'HISTORIA DE ' + countryName;
+      text.innerHTML = historyData[countryName] || 'Información en proceso de archivo...';
+      
+      detailBox.style.display = 'block';
+    }
+  </script>
+
+</body>
 </html>
