@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal Oficial - República Federal de Centroamérica</title>
   
-  <!-- Favicon / Icono de la pestaña del navegador -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png">
 
-  <!-- Tipografía Montserrat Heavy -->
+  <!-- Tipografía Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
@@ -55,7 +55,7 @@
       line-height: 1.2;
     }
 
-    /* Menú de Navegación Estilizado */
+    /* Menú de Navegación */
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -93,7 +93,7 @@
     }
 
     .section-card {
-      display: none; /* Se ocultan por defecto */
+      display: none;
       background-color: #0c0c0c;
       border: 2px solid #1f1f1f;
       padding: 35px;
@@ -102,7 +102,7 @@
     }
 
     .section-card.active {
-      display: block; /* Solo se muestra la sección activa */
+      display: block;
     }
 
     .section-header {
@@ -122,7 +122,7 @@
       font-weight: 700;
     }
 
-    /* Galería / Rejilla para la selección de países */
+    /* Galería de Países */
     .grid-countries {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -136,6 +136,9 @@
       padding: 20px;
       text-align: center;
       cursor: pointer;
+      font-family: inherit;
+      color: #ffffff;
+      width: 100%;
       transition: transform 0.2s, border-color 0.2s;
     }
 
@@ -145,13 +148,67 @@
     }
 
     .country-card h3 {
-      color: #ffffff;
       font-size: 1.1rem;
       font-weight: 900;
       text-transform: uppercase;
     }
 
-    /* Rejilla de Personajes / Otros Juegos */
+    /* Contenedores de Visores */
+    .viewer-wrapper {
+      position: relative;
+      width: 100%;
+      height: 550px;
+      border: 1px solid #333;
+      background: #0c0c0c;
+      border-radius: 4px;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .viewer-wrapper.fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      border: none;
+      border-radius: 0;
+      margin-top: 0;
+      padding: 10px;
+      background: rgba(8, 8, 8, 0.95);
+    }
+
+    .btn-action {
+      background-color: #1a1a1a;
+      color: #f3be2a;
+      border: 1px solid #f3be2a;
+      padding: 8px 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover, .btn-action.active {
+      background-color: #f3be2a;
+      color: #000000;
+    }
+
+    .viewer-wrapper.fullscreen .btn-fullscreen-toggle {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    }
+
+    /* Rejilla de Personajes */
     .character-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -172,6 +229,7 @@
       object-fit: cover;
       margin-bottom: 12px;
       border: 1px solid #333;
+      background-color: #1a1a1a;
     }
 
     .character-name {
@@ -193,7 +251,7 @@
       color: #f3be2a;
     }
 
-    /* Estilos para lista de contactos */
+    /* Contactos */
     .contact-list {
       list-style: none;
       padding: 0;
@@ -228,64 +286,68 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- Encabezado con Logo Oficial -->
+  <!-- Encabezado -->
   <header>
     <img class="emblem-main" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Escudo Oficial Centroamérica">
-    <h1 class="main-title">República Federal de Centroamérica war era</h1>
+    <h1 class="main-title">República Federal de Centroamérica War Era</h1>
   </header>
 
-  <!-- Navegación Principal -->
-  <nav>
+  <!-- Navegación -->
+  <nav aria-label="Navegación de secciones">
     <button class="nav-btn active" onclick="showSection('inicio', event)">Inicio</button>
-    <button class="nav-btn" onclick="showSection('historias', event)">Historia por País</button>
+    <button class="nav-btn" onclick="showSection('historias', event)">Historia</button>
     <button class="nav-btn" onclick="showSection('personajes', event)">Personajes Históricos</button>
     <button class="nav-btn" onclick="showSection('gobierno', event)">Sistema de Gobierno</button>
-    <button class="nav-btn" onclick="showSection('juegos', event)">Otros Juegos</button>
+    <button class="nav-btn" onclick="showSection('mapa', event)">Mapa Histórico</button>
     <button class="nav-btn" onclick="showSection('contacto', event)">Canales de Contacto</button>
+    <button class="nav-btn" onclick="showSection('juegos', event)">Otros Juegos</button>
   </nav>
 
-  <!-- Contenido de las Secciones -->
+  <!-- Secciones -->
   <main>
 
-    <!-- 1. INICIO / BIENVENIDA -->
+    <!-- 1. INICIO -->
     <section id="inicio" class="section-card active">
-      <h2 class="section-header">COMUNICADO DE BIENVENIDA</h2>
+      <h2 class="section-header">Comunicado de Bienvenida</h2>
       <div class="section-content">
         <p>Bienvenido al portal diplomático e histórico de la <span class="gold-highlight">República Federal de Centroamérica</span>.</p>
         <br>
-        <p>Somos una comunidad enfocada en el Roleplay de la "República Federal de Centroamerica"</p>
+        <p>Somos una comunidad enfocada en el Roleplay de la "República Federal de Centroamérica".</p>
       </div>
     </section>
 
-    <!-- 2. SECCIÓN DE HISTORIA POR PAÍS -->
+    <!-- 2. HISTORIA -->
     <section id="historias" class="section-card">
-      <h2 class="section-header">HISTORIA REGIONAL</h2>
+      <h2 class="section-header">Historia Regional</h2>
       <p class="section-content">Selecciona una nación para desplegar sus archivos históricos:</p>
       
       <div class="grid-countries">
-        <div class="country-card" onclick="openCountry('Guatemala')">
+        <button class="country-card" onclick="openCountry('R.F.CA')">
+          <h3>R.F.CA</h3>
+        </button>
+        <button class="country-card" onclick="openCountry('Guatemala')">
           <h3>Guatemala</h3>
-        </div>
-        <div class="country-card" onclick="openCountry('Nicaragua')">
+        </button>
+        <button class="country-card" onclick="openCountry('Nicaragua')">
           <h3>Nicaragua</h3>
-        </div>
-        <div class="country-card" onclick="openCountry('Costa Rica')">
+        </button>
+        <button class="country-card" onclick="openCountry('Costa Rica')">
           <h3>Costa Rica</h3>
-        </div>
-        <div class="country-card" onclick="openCountry('El Salvador')">
+        </button>
+        <button class="country-card" onclick="openCountry('El Salvador')">
           <h3>El Salvador</h3>
-        </div>
-        <div class="country-card" onclick="openCountry('Honduras')">
+        </button>
+        <button class="country-card" onclick="openCountry('Honduras')">
           <h3>Honduras</h3>
-        </div>
+        </button>
       </div>
 
-      <!-- Área donde se muestra el detalle del país seleccionado -->
       <div id="country-detail" style="margin-top: 30px; display: none; background: #111; padding: 20px; border-left: 3px solid #f3be2a;">
         <h3 id="country-title" class="gold-highlight" style="font-size: 1.3rem; text-transform: uppercase; margin-bottom: 10px;"></h3>
         <div id="country-text" class="section-content"></div>
@@ -294,74 +356,42 @@
 
     <!-- 3. PERSONAJES HISTÓRICOS -->
     <section id="personajes" class="section-card">
-      <h2 class="section-header">PERSONAJES HISTÓRICOS Y LÍDERES</h2>
+      <h2 class="section-header">Personajes Históricos y Líderes</h2>
       
       <div class="character-grid">
-        
-        <!-- Ficha 1 -->
         <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_1.png" alt="General Francisco Morazán">
-          <div class="character-name">gary</div>
-          <div class="character-role">fundador y presidente de la rfca</div>
-          <p class="section-content" style="font-size: 0.85rem;">Antiguo lider de la comunidad en el extinto juego "Rival Regions", fundador de la comunidad Centroamericana (C.A), primer jugador C.A&nbsp;en War Era, primer presidente de Guatemala, primer presidente nativo en C.A.</p>
+          <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Gary">
+          <div class="character-name">Gary</div>
+          <div class="character-role">Fundador y Presidente de la RFCA</div>
+          <p class="section-content" style="font-size: 0.85rem;">Antiguo líder de la comunidad en el extinto juego "Rival Regions", fundador de la comunidad Centroamericana (C.A), primer jugador C.A en War Era, primer presidente de Guatemala y primer presidente nativo en C.A.</p>
         </div>
 
-        <!-- Ficha 2 -->
         <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Duvra">
           <div class="character-name">Duvra</div>
-          <div class="character-role">Fundador de la comunidad nicaraguense.</div>
-          <p class="section-content" style="font-size: 0.85rem;">Jugador Venezolano, se encargo de liderar a los Nicaraguenses y ganar las elecciones contra "Lalo Salamanca", jugador estado unidense que queria tener toda Centroamerica.</p>
+          <div class="character-role">Fundador de la comunidad nicaragüense</div>
+          <p class="section-content" style="font-size: 0.85rem;">Jugador venezolano, se encargó de liderar a los nicaragüenses y ganar las elecciones contra "Lalo Salamanca", jugador estadounidense que buscaba controlar toda Centroamérica.</p>
         </div>
+
         <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
+          <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Keikai">
           <div class="character-name">Keikai</div>
-          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
-          <p class="section-content" style="font-size: 0.85rem;">Jugador Nicaraguense, lider de los nicaraguenses, logro hacer el primer NAP con Panama y Argentina, logro ser el top donador de dinero en los estados de Guatemala, Nicaragua y la unidad "Fuerza Aerea".</p>
-        </div>
-        <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
-          <div class="character-name">rams</div>
-          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
-          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
-        </div>
-        <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
-          <div class="character-name">Duvra</div>
-          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
-          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
-        </div>
-        <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
-          <div class="character-name">Duvra</div>
-          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
-          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
-        </div>
-        <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
-          <div class="character-name">Duvra</div>
-          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
-          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
-        </div>
-        <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
-          <div class="character-name">Duvra</div>
-          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
-          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
-        </div>
-        <div class="character-card">
-          <img class="character-img" src="ENLACE_IMAGEN_PERSONAJE_2.png" alt="Canciller del Estado">
-          <div class="character-name">Duvra</div>
-          <div class="character-role">Fundador de la comunidad nicaraguense y liberador de nicaragua.</div>
-          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra.</p>
+          <div class="character-role">Fundador de la comunidad y liberador de Nicaragua</div>
+          <p class="section-content" style="font-size: 0.85rem;">Jugador nicaragüense y líder comunitario. Logró concretar el primer NAP con Panamá y Argentina, además de destacar como el mayor donante en los estados de Guatemala, Nicaragua y la unidad "Fuerza Aérea".</p>
         </div>
 
+        <div class="character-card">
+          <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Rams">
+          <div class="character-name">Rams</div>
+          <div class="character-role">Diplomacia y Tratados</div>
+          <p class="section-content" style="font-size: 0.85rem;">Encargado de los tratados de anexión territorial y resoluciones de guerra en la región.</p>
+        </div>
       </div>
     </section>
 
     <!-- 4. SISTEMA DE GOBIERNO -->
     <section id="gobierno" class="section-card">
-      <h2 class="section-header">SISTEMA DE GOBIERNO</h2>
+      <h2 class="section-header">Sistema de Gobierno</h2>
       <div class="section-content">
         <p><span class="gold-highlight">ESTRUCTURA DEL PODER FEDERAL:</span></p>
         <br>
@@ -373,61 +403,86 @@
       </div>
     </section>
 
-    <!-- 5. OTROS JUEGOS -->
-    <section id="juegos" class="section-card">
-      <h2 class="section-header">OTROS JUEGOS Y PROYECTOS</h2>
-      <div class="section-content">
-        <p>Explora otras simulaciones, partidas y proyectos activos de la comunidad:</p>
-        
-        <div class="character-grid" style="margin-top: 20px;">
-          <!-- Proyecto o Juego 1 -->
-          <div class="character-card">
-            <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Juego 1">
-            <div class="character-name">rival regions</div>
-            <div class="character-role">Estrategia Global</div>
-            <p class="section-content" style="font-size: 0.85rem;">Simulación geopolítica.<br><br>Comunidad activa desde 2017-2025, dominando todo Centroamerica.</p>
-          </div>
+    <!-- 5. MAPA HISTÓRICO -->
+    <section id="mapa" class="section-card">
+      <h2 class="section-header">Despliegue Territorial y Frentes</h2>
+      <p class="section-content">Línea temporal y visor de mapas tácticos (Registro del 18 de abril de 2026):</p>
 
-          <!-- Proyecto o Juego 2 -->
-          <div class="character-card">
-            <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Juego 2">
-            <div class="character-name">diplomacy</div>
-            <div class="character-role">Roleplay economico</div>
-            <p class="section-content" style="font-size: 0.85rem;">Simulacion geopolitica, comunidad en formacion.<br><br>2026-x</p>
-          </div>
-        </div>
+      <button id="map-fs-btn" class="btn-action btn-fullscreen-toggle" onclick="toggleFullscreen('map-wrapper', this)" style="margin-top: 15px; margin-bottom: 10px;">
+        ⛶ Pantalla Completa
+      </button>
+
+      <div id="map-wrapper" class="viewer-wrapper">
+        <iframe 
+          id="warera-map-frame"
+          src="https://spywarera.com/timemachine/map?date=2026-04-18" 
+          width="100%" 
+          height="100%" 
+          style="border: none;"
+          loading="lazy"
+          title="Mapa Histórico SpyWarEra 18-04-2026">
+        </iframe>
       </div>
+
+      <p style="margin-top: 10px; font-size: 0.8rem; color: #888;">
+        Datos e interfaz provistos por <a href="https://spywarera.com/timemachine/map?date=2026-04-18" target="_blank" rel="noopener noreferrer" style="color: #f3be2a; text-decoration: underline;">SpyWarEra TimeMachine (18/04/2026)</a>.
+      </p>
     </section>
 
     <!-- 6. CANALES DE CONTACTO -->
     <section id="contacto" class="section-card">
-      <h2 class="section-header">CANALES DE CONTACTO Y COMUNIDAD</h2>
+      <h2 class="section-header">Canales de Contacto y Comunidad</h2>
       <div class="section-content">
         <p style="margin-bottom: 20px;">Ponte en contacto con el cuerpo diplomático, administradores o únete a nuestras comunidades:</p>
 
         <ul class="contact-list">
           <li>
             <span>Servidor de Discord Oficial</span>
-            <a href="https://discord.gg/NfW9WPK8f7" target="_blank">Unirse →</a>
+            <a href="https://discord.gg/NfW9WPK8f7" target="_blank" rel="noopener noreferrer">Unirse →</a>
           </li>
           <li>
             <span>Grupo de WhatsApp / Comunidad</span>
-            <a href="https://chat.whatsapp.com/ejemplo" target="_blank">Entrar →</a>
+            <a href="https://chat.whatsapp.com/ejemplo" target="_blank" rel="noopener noreferrer">Entrar →</a>
           </li>
           <li>
-            <span>War Era</span>
+            <span>War Era / Contacto Directo</span>
             <a href="mailto:contacto@ejemplo.com">Enviar Correo →</a>
           </li>
         </ul>
       </div>
     </section>
 
+    <!-- 7. OTROS JUEGOS -->
+    <section id="juegos" class="section-card">
+      <h2 class="section-header">Otros Juegos y Proyectos</h2>
+      <div class="section-content">
+        <p>Explora otras simulaciones, partidas y proyectos activos de la comunidad:</p>
+        
+        <div class="character-grid" style="margin-top: 20px;">
+          <div class="character-card">
+            <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Rival Regions">
+            <div class="character-name">Rival Regions</div>
+            <div class="character-role">Estrategia Global</div>
+            <p class="section-content" style="font-size: 0.85rem;">Simulación geopolítica.<br><br>Comunidad activa durante 2017-2025, dominando Centroamérica.</p>
+          </div>
+
+          <div class="character-card">
+            <img class="character-img" src="https://i.postimg.cc/gjsq2pTr/151549-1580666421-big.png" alt="Diplomacy">
+            <div class="character-name">Diplomacy</div>
+            <div class="character-role">Roleplay Económico</div>
+            <p class="section-content" style="font-size: 0.85rem;">Simulación geopolítica, comunidad en formación.<br><br>2026-actualidad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    Registro Oficial de comunidad gamer Centroaméricana</footer>
+    Registro Oficial de la Comunidad Gamer Centroamericana
+  </footer>
 
-  <!-- Lógica interactiva en JavaScript -->
+  <!-- Scripts -->
   <script>
     function showSection(sectionId, evt) {
       const sections = document.querySelectorAll('.section-card');
@@ -436,35 +491,162 @@
       const buttons = document.querySelectorAll('.nav-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
 
-      document.getElementById(sectionId).classList.add('active');
-      evt.currentTarget.classList.add('active');
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+      
+      if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add('active');
+      }
     }
 
-    /* AQUÍ PUEDES EDITAR EL CONTENIDO DE CADA PAÍS CON TEXTO, IMÁGENES O PDFS */
+    /* Alternador Universal de Pantalla Completa */
+    function toggleFullscreen(wrapperId, btn) {
+      const wrapper = document.getElementById(wrapperId);
+      if (!wrapper) return;
+
+      const isFull = wrapper.classList.toggle('fullscreen');
+      btn.innerText = isFull ? '✕ Vista Normal' : '⛶ Pantalla Completa';
+
+      if (isFull) {
+        wrapper.appendChild(btn);
+      } else {
+        wrapper.parentNode.insertBefore(btn, wrapper);
+      }
+    }
+
     const historyData = {
-      'Guatemala': `
-        <p>Registros del inicio de la Republica Federal Centroamerica, las campañas militares y la diplomacia en la frontera norte...</p>
+      'R.F.CA': `
+        <p>Documentación general, tratados de unificación y actas fundacionales de la República Federal de Centroamérica.</p>
         <br>
-        <img src="https://i.postimg.cc/DwvHT9SW/1.png" style="width: 100%; max-width: 400px; display: block; margin: 15px 0; border: 1px solid #333;">
-        <img src="https://i.postimg.cc/g2zQWCxX/2.png" style="width: 100%; max-width: 400px; display: block; margin: 15px 0; border: 1px solid #333;">
+        <button class="btn-action btn-fullscreen-toggle" onclick="toggleFullscreen('pdf-rfca-wrapper', this)" style="margin-bottom: 10px;">
+          ⛶ Pantalla Completa
+        </button>
+        
+        <div id="pdf-rfca-wrapper" class="viewer-wrapper">
+          <iframe 
+            src="https://drive.google.com/file/d/1xiTvSo3gB30RLFVxm8U-mnafpWce58kI/preview" 
+            width="100%" 
+            height="100%" 
+            style="border: none;" 
+            allow="autoplay">
+          </iframe>
+        </div>
+
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #888;">
+          ¿Problemas para visualizar? <a href="https://drive.google.com/file/d/1xiTvSo3gB30RLFVxm8U-mnafpWce58kI/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #f3be2a; text-decoration: underline;">Abrir en Google Drive</a>
+        </p>
+      `,
+
+      'Guatemala': `
+        <p>Registros del inicio de la República Federal de Centroamérica, las campañas militares y la diplomacia en la frontera norte.</p>
+        <br>
+        <button class="btn-action btn-fullscreen-toggle" onclick="toggleFullscreen('pdf-guatemala-wrapper', this)" style="margin-bottom: 10px;">
+          ⛶ Pantalla Completa
+        </button>
+        
+        <div id="pdf-guatemala-wrapper" class="viewer-wrapper">
+          <iframe 
+            src="https://drive.google.com/file/d/1U4gHtyFIVVwgEE4xb-mtl7Mv8YnLdxs4/preview" 
+            width="100%" 
+            height="100%" 
+            style="border: none;" 
+            allow="autoplay">
+          </iframe>
+        </div>
+
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #888;">
+          ¿Problemas para visualizar? <a href="https://drive.google.com/file/d/1U4gHtyFIVVwgEE4xb-mtl7Mv8YnLdxs4/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #f3be2a; text-decoration: underline;">Abrir en Google Drive</a>
+        </p>
       `,
 
       'Nicaragua': `
         <p>Archivos sobre las rutas comerciales, fortificaciones y tratados marítimos.</p>
         <br>
-        <p><a href="https://drive.google.com/file/d/1Hywwp16JQ9robtK8qGPI3Zz4gWY_2yGe/view?usp=sharing" target="_blank" style="color: #f3be2a; text-decoration: underline;">📄 Ver Documento Oficial en PDF</a></p>
+        <button class="btn-action btn-fullscreen-toggle" onclick="toggleFullscreen('pdf-nicaragua-wrapper', this)" style="margin-bottom: 10px;">
+          ⛶ Pantalla Completa
+        </button>
+        
+        <div id="pdf-nicaragua-wrapper" class="viewer-wrapper">
+          <iframe 
+            src="https://drive.google.com/file/d/1Hywwp16JQ9robtK8qGPI3Zz4gWY_2yGe/preview" 
+            width="100%" 
+            height="100%" 
+            style="border: none;" 
+            allow="autoplay">
+          </iframe>
+        </div>
+
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #888;">
+          ¿Problemas para visualizar? <a href="https://drive.google.com/file/d/1Hywwp16JQ9robtK8qGPI3Zz4gWY_2yGe/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="color: #f3be2a; text-decoration: underline;">Abrir en Google Drive</a>
+        </p>
       `,
 
       'Costa Rica': `
         <p>Documentación relativa al proceso de integración y acuerdos fronterizos.</p>
+        <br>
+        <button class="btn-action btn-fullscreen-toggle" onclick="toggleFullscreen('pdf-costarica-wrapper', this)" style="margin-bottom: 10px;">
+          ⛶ Pantalla Completa
+        </button>
+        
+        <div id="pdf-costarica-wrapper" class="viewer-wrapper">
+          <iframe 
+            src="https://drive.google.com/file/d/1x2vG4Z4s3PG0S9QnDLBO3T-ARtG2GBPg/preview" 
+            width="100%" 
+            height="100%" 
+            style="border: none;" 
+            allow="autoplay">
+          </iframe>
+        </div>
+
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #888;">
+          ¿Problemas para visualizar? <a href="https://drive.google.com/file/d/1x2vG4Z4s3PG0S9QnDLBO3T-ARtG2GBPg/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #f3be2a; text-decoration: underline;">Abrir en Google Drive</a>
+        </p>
       `,
 
       'El Salvador': `
         <p>Sede del mando central federal y reorganización de las defensas armadas.</p>
+        <br>
+        <button class="btn-action btn-fullscreen-toggle" onclick="toggleFullscreen('pdf-elsalvador-wrapper', this)" style="margin-bottom: 10px;">
+          ⛶ Pantalla Completa
+        </button>
+        
+        <div id="pdf-elsalvador-wrapper" class="viewer-wrapper">
+          <iframe 
+            src="https://drive.google.com/file/d/1Zu4OJsgL2Bpn1RlWXTBGhX_Tdw_3Sn2T/preview" 
+            width="100%" 
+            height="100%" 
+            style="border: none;" 
+            allow="autoplay">
+          </iframe>
+        </div>
+
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #888;">
+          ¿Problemas para visualizar? <a href="https://drive.google.com/file/d/1Zu4OJsgL2Bpn1RlWXTBGhX_Tdw_3Sn2T/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="color: #f3be2a; text-decoration: underline;">Abrir en Google Drive</a>
+        </p>
       `,
 
       'Honduras': `
         <p>Puntos clave de abastecimiento, anexión y control de pasos territoriales.</p>
+        <br>
+        <button class="btn-action btn-fullscreen-toggle" onclick="toggleFullscreen('pdf-honduras-wrapper', this)" style="margin-bottom: 10px;">
+          ⛶ Pantalla Completa
+        </button>
+        
+        <div id="pdf-honduras-wrapper" class="viewer-wrapper">
+          <iframe 
+            src="https://drive.google.com/file/d/1x2vG4Z4s3PG0S9QnDLBO3T-ARtG2GBPg/preview" 
+            width="100%" 
+            height="100%" 
+            style="border: none;" 
+            allow="autoplay">
+          </iframe>
+        </div>
+
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #888;">
+          ¿Problemas para visualizar? <a href="https://drive.google.com/file/d/1x2vG4Z4s3PG0S9QnDLBO3T-ARtG2GBPg/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="color: #f3be2a; text-decoration: underline;">Abrir en Google Drive</a>
+        </p>
       `
     };
 
